@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #e94560);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass-card {
+  background: rgba(20, 20, 30, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2rem;
+  text-align: center;
+  /* Идеальная адаптивность для любых устройств */
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  animation: floatUp 0.8s ease-out;
+}
+
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.avatar-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: none;
+  box-shadow: 0 0 25px rgba(0, 85, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 85, 255, 0.8);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.bio {
+  font-size: 1rem;
+  color: #a0a0b0;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Текст и иконка выровнены по левому краю */
+  gap: 20px; /* Отступ между иконкой и текстом */
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white; /* Цвет текста белый */
+  text-decoration: none;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.link-btn svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  fill: currentColor; /* Цвет иконки подстраивается под цвет текста */
+  transition: all 0.3s ease;
+}
+
+.link-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Цветные ховеры для конкретных соцсетей */
+.link-btn.tg:hover { border-color: #24A1DE; color: #24A1DE; }
+.link-btn.gh:hover { border-color: #ffffff; color: #ffffff; background: rgba(255,255,255, 0.2); }
+.link-btn.htb:hover { border-color: #9FEF00; color: #9FEF00; }
+.link-btn.mail:hover { border-color: #EA4335; color: #EA4335; }
+
+/* Медиа-запрос для корректного отображения на узких телефонах */
+@media (max-width: 380px) {
+  .glass-card {
+    padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.8rem; }
+  .link-btn { font-size: 1rem; padding: 14px 20px; gap: 15px; }
+  .link-btn svg { width: 22px; height: 22px; }
+}
+
+/* Мигающий курсор для эффекта печати */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background-color: #a0a0b0;
+  animation: blink 1s step-end infinite;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  height: 1.1rem;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Пасхалка: Hacker Mode */
+body.hacker-mode {
+  background: #050505;
+  animation: none;
+  color: #0f0;
+}
+body.hacker-mode .glass-card {
+  background: rgba(0, 20, 0, 0.9);
+  border: 1px solid #0f0;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+}
+body.hacker-mode .avatar {
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.6);
+  filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(300%);
+  cursor: pointer;
+}
+body.hacker-mode h1, body.hacker-mode .bio {
+  color: #0f0;
+}
+body.hacker-mode .cursor {
+  background-color: #0f0;
+}
+body.hacker-mode .link-btn {
+  color: #0f0;
+  border-color: #0f0;
+  background: transparent;
+}
+body.hacker-mode .link-btn svg {
+  fill: #0f0;
+}
+body.hacker-mode .link-btn:hover {
+  background: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 15px #0f0;
+}
+
+/* Скрываем канвас в обычном режиме, показываем в хакерском */
+#matrixBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: none;
+}
+body.hacker-mode #matrixBG {
+  display: block;
+}
